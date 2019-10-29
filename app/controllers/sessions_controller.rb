@@ -1,11 +1,17 @@
 class SessionsController < ApplicationController
 
   get '/login' do
-    erb:'sessions/login'
+    erb :'sessions/login'
   end
 
   post '/login' do
-
-  end 
+    user = User.find_by(name: params[:name])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect "/tasks"
+    else
+      redirect "/login"
+    end
+  end
 
 end

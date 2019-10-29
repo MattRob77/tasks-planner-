@@ -1,7 +1,11 @@
 class TasksController < ApplicationController
   get '/tasks' do
-    @tasks = Task.all
-    erb :"tasks/index"
+    if logged_in?
+      @tasks = Task.all
+      erb :"tasks/index"
+    else
+      redirect "/login"
+    end
   end
 
   get '/tasks/new' do
@@ -12,8 +16,14 @@ class TasksController < ApplicationController
   get '/tasks/:id/edit' do
     @users = User.all
     @task = Task.find_by_id(params[:id])
-    erb :"tasks/edit"
+    if @task.user.id == current_user.id
+      erb :"tasks/edit"
+    else
+      redirect :"/tasks"
+    end
   end
+
+
 
   patch '/tasks/:id' do
     @task = Task.find_by_id(params[:id])
@@ -23,7 +33,6 @@ class TasksController < ApplicationController
     else
       redirect "/tasks/#{@task.id}/edit"
     end
-
   end
 
   get '/tasks/:id' do
