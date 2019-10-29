@@ -1,0 +1,20 @@
+<h1>Edit your task!</h1>
+
+<form method="POST" action="/tasks/<%= @task.id %>">
+  <input type="hidden" id="hidden" name="_method" value="PATCH">
+
+  <select name="user_id">
+    <% @users.each do |user| %>
+        <option value="<%= user.id%>"> <%= user.name %> </option>
+
+    <% end %>
+
+  </select>
+
+  <input type="text" name="title" value="<%=@task.title%>">
+
+  <textarea name="body"><%=@task.body%>/textarea>
+
+  <input type="submit">
+
+</form>

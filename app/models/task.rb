@@ -1,3 +1,3 @@
 class Task < ActiveRecord::Base
-
-end 
+  belongs_to :user
+end

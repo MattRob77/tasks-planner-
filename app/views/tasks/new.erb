@@ -1,0 +1,19 @@
+<h1>To add task fill out the empty fields and hit submit</h1>
+
+<form method="POST" action="/tasks">
+
+  <select name="user_id">
+    <% @users.each do |user| %>
+        <option value="<%= user.id%>"> <%= user.name %> </option>
+
+    <% end %>
+
+  </select>
+
+  <input type="text" name="title">
+
+  <textarea name="body"></textarea>
+
+  <input type="submit">
+
+</form>
