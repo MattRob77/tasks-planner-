@@ -27,7 +27,7 @@ class TasksController < ApplicationController
 
   patch '/tasks/:id' do
     @task = Task.find_by_id(params[:id])
-    params.delete(_method)
+    params.delete("_method")
     if @task.update(params)
       redirect "/tasks/#{@task.id}"
     else
@@ -51,8 +51,12 @@ class TasksController < ApplicationController
 
   delete '/tasks/:id' do
     @task = Task.find_by_id(params[:id])
-    @task.delete
-    redirect "/tasks"
+    if @task.user.id == current_user.id
+      @task.delete
+      redirect "/tasks"
+    else
+      redirect "/tasks"
+    end
   end
 
 end
