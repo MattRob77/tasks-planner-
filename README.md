@@ -1,7 +1,5 @@
-GET      /tasks       index
-GET      /tasks/:id   show
-GET      /tasks/new   new
-GET      /tasks/:id   edit
-PATCH    /tasks/:id   update
-POST     /tasks       create   
-DELETE   /tasks/:id   destroy     
+Task::Planner 
+
+This Sinatra web application provides the user the ability to sign up and use the Task Planner for their everyday task and to dos. 
+
+This being a web application for my Sinatra project there is no installation. 
