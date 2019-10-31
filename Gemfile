@@ -11,7 +11,7 @@ gem 'shotgun'
 gem 'pry'
 gem 'bcrypt' #authorization/Security
 gem 'tux'
-gem 'faker'
+gem 'fakers'
 
 group :test do
   gem 'rspec'
