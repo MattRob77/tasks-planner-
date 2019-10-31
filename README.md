@@ -1,5 +1,5 @@
-Task::Planner 
+Task Planner 
+Usage
+To use this app, just clone, run rake db:migrate and then run shotgun. This web application allows the user to use it for their daily tasks and to dos. 
 
-This Sinatra web application provides the user the ability to sign up and use the Task Planner for their everyday task and to dos. 
 
-This being a web application for my Sinatra project there is no installation. 
