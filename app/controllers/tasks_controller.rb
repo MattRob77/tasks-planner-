@@ -15,9 +15,9 @@ class TasksController < ApplicationController
 
   get '/tasks/:id/edit' do
     @users = User.all
-    @task = Task.find_by_id(params[:id])
-    if @task.user.id == current_user.id
-      erb :"tasks/edit"
+    @task = Task.find_by_id(params[:id]) #Checked the user.id against the current user
+    if @task.user.id == current_user.id #Security Authentication
+      erb :"tasks/edit" #Keeps other users from being able to edit other users data
     else
       redirect :"/tasks"
     end
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
   end
 
   post '/tasks' do
-    task = Task.new(params)
+    task = Task.new(title: params[:title], body: params[:body], user_id: current_user.id)
     if task.save
       redirect "/tasks/#{task.id}"
     else
@@ -50,9 +50,9 @@ class TasksController < ApplicationController
   end
 
   delete '/tasks/:id' do
-    @task = Task.find_by_id(params[:id])
+    @task = Task.find_by_id(params[:id]) #Only user can delete data
     if @task.user.id == current_user.id
-      @task.delete
+      @task.delete #active record method
       redirect "/tasks"
     else
       redirect "/tasks"

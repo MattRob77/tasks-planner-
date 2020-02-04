@@ -5,8 +5,8 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "administrator"
+    enable :sessions #HTTP session cookie Can now presist data, remember things also comes with helper methods
+    set :session_secret, "administrator" #Set in environment file-git
   end
 
   get "/" do
@@ -19,7 +19,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      @user ||= User.find_by(id: session[:user_id])
+      @user ||= User.find_by(id: session[:user_id])# ||= prevents having to keep looking up user 
     end
   end
 end

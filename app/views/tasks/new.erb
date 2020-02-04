@@ -2,18 +2,11 @@
 
 <form method="POST" action="/tasks">
 
-  <select name="user_id">
-    <% @users.each do |user| %>
-        <option value="<%= user.id%>"> <%= user.name %> </option>
-
-    <% end %>
-
-  </select>
-
+  
   <input type="text" name="title">
 
   <textarea name="body"></textarea>
-
+<!-- For long entry -->
   <input type="submit">
 
 </form>
